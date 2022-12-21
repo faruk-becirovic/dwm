@@ -5,13 +5,13 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "AlegreyaSans-Regular:size=12", "Font Awesome 6 Brands-Regular-400.otf:size=12", "Font Awesome 6 Free-Solid-900.otf:size=12" };
+static const char dmenufont[]       = "AlegreyaSans-Regular:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_cyan[]        = "#4b7978";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -19,7 +19,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "", "", "1", "2", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -57,11 +57,21 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
+static const char *mutecmd[] = {"pamixer", "--toggle-mute", NULL};
+static const char *volumeupcmd[] = {"pamixer", "-i", "5",  NULL};
+static const char *volumedowncmd[] = {"pamixer", "-d", "5", NULL};
+static const char *lockscreencmd[] = {"light-locker-command", "-l", NULL};
+static const char *nm_dmenu[] = {"networkmanager_dmenu", NULL};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_XF86AudioMute,      spawn,          {.v = dmenucmd } },
+        { MODKEY,                       XK_F6,     spawn,          {.v = mutecmd } },
+        { MODKEY,                       XK_F7,     spawn,          {.v = volumedowncmd } },
+	{ MODKEY,                       XK_F8,     spawn,          {.v = volumeupcmd } },
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockscreencmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = nm_dmenu } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
