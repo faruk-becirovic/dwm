@@ -19,7 +19,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "1", "2", "", "", "" };
+static const char *tags[] = { "", "", "", "1", "2", "3", "", "", "" }; /* alt  */
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -39,9 +39,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "",      tile },    /* first entry is default */
+	{ "",      NULL },    /* no layout function means floating behavior */
+	{ "",      monocle },
 };
 
 /* key definitions */
@@ -63,15 +63,19 @@ static const char *volumeupcmd[] = {"pamixer", "-i", "5",  NULL};
 static const char *volumedowncmd[] = {"pamixer", "-d", "5", NULL};
 static const char *lockscreencmd[] = {"light-locker-command", "-l", NULL};
 static const char *nm_dmenu[] = {"networkmanager_dmenu", NULL};
+static const char *print_scr_full[] = {"flameshot", "gui", NULL};
+static const char *print_scr_win[] = {"shutter", "-a", NULL};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
         { MODKEY,                       XK_F6,     spawn,          {.v = mutecmd } },
         { MODKEY,                       XK_F7,     spawn,          {.v = volumedowncmd } },
 	{ MODKEY,                       XK_F8,     spawn,          {.v = volumeupcmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = print_scr_full } },
+	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = print_scr_win } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockscreencmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = nm_dmenu } },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = nm_dmenu } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
