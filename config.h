@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "AlegreyaSans-Regular:size=12", "Font Awesome 6 Brands-Regular-400.otf:size=12", "Font Awesome 6 Free-Solid-900.otf:size=12" };
-static const char dmenufont[]       = "AlegreyaSans-Regular:size=12";
+static const char *fonts[]          = { "Montserrat-Regular:size=12", "Font Awesome 6 Brands-Regular-400.otf:size=12", "Font Awesome 6 Free-Solid-900.otf:size=12" };
+static const char dmenufont[]       = "Montserrat-Regular:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -57,7 +57,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "gnome-terminal", NULL };
 static const char *mutecmd[] = {"pamixer", "--toggle-mute", NULL};
 static const char *volumeupcmd[] = {"pamixer", "-i", "5",  NULL};
 static const char *volumedowncmd[] = {"pamixer", "-d", "5", NULL};
